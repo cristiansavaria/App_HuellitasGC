@@ -48,55 +48,31 @@
 </div>
 
 
-<table class="table row">
+  <table class="table row">
     <h3>Horas Disponibles</h3>
     <thead>
       <tr>
         <th scope="col">Fecha</th>
         <th scope="col">Hora</th>
         <th scope="col">Servicio</th>
-        
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
+      {% for hora in horas %}
       <tr>
-        <th scope="row">xx/xx/xx</th>
-        <td>xx:xx</td>
-        <td>Consulta medica</td>
-        <td><button class="btn btn-warning">Reservar</button></td>
-        
+        <td>{{ hora.fecha }}</td>
+        <td>{{ hora.hora|time:"H:i" }}</td>
+        <td>{{ hora.servicio }}</td>
+        <td>
+          <a href="{% url 'reservar' hora.id %}" class="btn btn-warning">Reservar</a>
+        </td>
       </tr>
+      {% empty %}
       <tr>
-        <th scope="row">xx/xx/xx</th>
-        <td>xx:xx</td>
-        <td>Consulta medica</td>
-        <td><button class="btn btn-warning">Reservar</button></td>
-        
+        <td colspan="4">No hay horas disponibles.</td>
       </tr>
-      <tr>
-        <th scope="row">xx/xx/xx</th>
-        <td>xx:xx</td>
-        <td>Consulta medica</td>
-        <td><button class="btn btn-warning">Reservar</button></td>
-        
-      </tr>
-      <tr>
-        <th scope="row">xx/xx/xx</th>
-        <td>xx:xx</td>
-        <td>Consulta medica</td>
-        <td><button class="btn btn-warning">Reservar</button></td>
-        
-      </tr>
-      <tr>
-        <th scope="row">xx/xx/xx</th>
-        <td>xx:xx</td>
-        <td>Consulta medica</td>
-        <td><button class="btn btn-warning">Reservar</button></td>
-        
-      </tr>
-      
-     
-      
+      {% endfor %}
     </tbody>
   </table>
 
